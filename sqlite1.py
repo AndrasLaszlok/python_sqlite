@@ -1,6 +1,6 @@
 import sqlite3
 
-def insertMultipleRecords(recordList):
+def insertData():
     try:
         sqliteConnection = sqlite3.connect('d:\Python\Portable Python-3.10.0 x64\Practice\pythondb\madaraszat.db')
         cursor = sqliteConnection.cursor()
@@ -8,9 +8,9 @@ def insertMultipleRecords(recordList):
 
         sqlite_insert_query = """INSERT INTO madarak
                           (id, faj, egyedszam, kozseg, kozseg_id, eov_e, eov_n)
-                          VALUES (?, ?, ?, ?, ?, ?, ?);"""
+                          VALUES (14, 'Carduelis carduelis', 2, 'Putnok', 623, 756075.3, 329337.8);"""
 
-        cursor.executemany(sqlite_insert_query, recordList)
+        cursor.execute(sqlite_insert_query)
         sqliteConnection.commit()
         print("Összesen", cursor.rowcount, "Sikeres feltöltés")
         sqliteConnection.commit()
@@ -23,6 +23,4 @@ def insertMultipleRecords(recordList):
             sqliteConnection.close()
             print("Adatbáziskapcsolat lezárult")
 
-recordsToInsert = [(13, 'Mergus albellus', 1, 'Gyöngyös', 303, 756015.3, 329347.8),]
-
-insertMultipleRecords(recordsToInsert)
+insertData()
