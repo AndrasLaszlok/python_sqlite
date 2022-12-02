@@ -2,7 +2,7 @@ import sqlite3, spatialite
 
 def readSqliteTable():
     try:
-        sqliteConnection = spatialite.connect('d:\Python\Portable Python-3.10.0 x64\Practice\pythondb\mod_spatialite\madaraszat.sqlite')
+        sqliteConnection = spatialite.connect('madaraszat.sqlite')
         cursor = sqliteConnection.cursor()
         print("Connected to SQLite")
 
