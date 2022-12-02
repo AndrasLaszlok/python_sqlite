@@ -2,7 +2,7 @@ import sqlite3
 
 def insertData():
     try:
-        sqliteConnection = sqlite3.connect('d:\Python\Portable Python-3.10.0 x64\Practice\pythondb\madaraszat.db')
+        sqliteConnection = sqlite3.connect('madaraszat.db')
         cursor = sqliteConnection.cursor()
         print("Csatlakozva az SQLite adatbázishoz")
 
