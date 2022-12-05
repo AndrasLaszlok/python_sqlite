@@ -13,7 +13,7 @@ def insertData():
         cursor.execute(sqlite_insert_query)
         sqliteConnection.commit()
         print("Összesen", cursor.rowcount, "Sikeres feltöltés")
-        sqliteConnection.commit()
+        sqliteConnection.close()
         cursor.close()
 
     except sqlite3.Error as error:
