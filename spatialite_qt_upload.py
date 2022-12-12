@@ -9,7 +9,7 @@ class MainWindow(QMainWindow):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        uic.loadUi("d:/Python/Portable Python-3.10.0 x64/Practice/pythondb/spatialite_qt_upload.ui", self)
+        uic.loadUi("spatialite_qt_upload.ui", self)
 
         self.pushButton.pressed.connect(self.insertData)
 
