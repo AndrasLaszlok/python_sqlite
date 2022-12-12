@@ -9,13 +9,13 @@ class MainWindow(QMainWindow):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        uic.loadUi("d:/Python/Portable Python-3.10.0 x64/Practice/pythondb/qt_upload.ui", self)
+        uic.loadUi("d:/Python/Portable Python-3.10.0 x64/Practice/pythondb/spatialite_qt_upload.ui", self)
 
         self.pushButton.pressed.connect(self.insertData)
 
     def insertData(self):
         try:
-            sqliteConnection = spatialite.connect("d:\Python\Portable Python-3.10.0 x64\Practice\pythondb\mod_spatialite\madaraszat.sqlite")
+            sqliteConnection = spatialite.connect("madaraszat.sqlite")
             cursor = sqliteConnection.cursor()
             print("Csatlakozva az SQLite adatbázishoz")
 
