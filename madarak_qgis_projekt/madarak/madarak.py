@@ -29,7 +29,7 @@ from qgis.PyQt.QtWidgets import QAction
 from .resources import *
 # Import the code for the dialog
 from .madarak_widget import madarakWidget
-import os.path, spatialite
+import os.path, spatialite, sqlite3
 
 
 class madarak:
@@ -197,28 +197,37 @@ class madarak:
     def upload(self):
         """Upload data to database"""
 
-        sqliteConnection = spatialite.connect(os.path.join(os.path.dirname(__file__), "madarak2.sqlite"))
-        cursor = sqliteConnection.cursor()
+        try:
 
-        sqlite_insert_query = ("INSERT INTO madarak2 \
-                          (faj, egyedszam, kozseg, kozseg_id, eov_e, eov_n) \
-                          VALUES (?,?,?,?,?,?);")
+            sqliteConnection = spatialite.connect(os.path.join(os.path.dirname(__file__), "madarak2.sqlite"))
+            cursor = sqliteConnection.cursor()
 
-        v_faj=self.widget.textEdit.toPlainText()
-        v_egyedszam=self.widget.spinBox.value()
-        v_kozseg=self.widget.textEdit_2.toPlainText()
-        v_kozseg_id=self.widget.spinBox_2.value()
-        v_eov_e=self.widget.doubleSpinBox.value()
-        v_eov_n=self.widget.doubleSpinBox_2.value()
+            sqlite_insert_query = ("INSERT INTO madarak2 \
+                              (faj, egyedszam, kozseg, kozseg_id, eov_e, eov_n) \
+                              VALUES (?,?,?,?,?,?);")
 
-        data_tuple = (v_faj, v_egyedszam, v_kozseg, v_kozseg_id, v_eov_e, v_eov_n)
+            v_faj=self.widget.textEdit.toPlainText()
+            v_egyedszam=self.widget.spinBox.value()
+            v_kozseg=self.widget.textEdit_2.toPlainText()
+            v_kozseg_id=self.widget.spinBox_2.value()
+            v_eov_e=self.widget.doubleSpinBox.value()
+            v_eov_n=self.widget.doubleSpinBox_2.value()
 
-        cursor.execute(sqlite_insert_query, data_tuple)
-        sqliteConnection.commit()
-        
-        cursor.execute('UPDATE madarak2 SET Geom=MakePoint(eov_e, eov_n, 23700) WHERE id = (SELECT MAX(id) FROM madarak2);')
-        sqliteConnection.commit()
+            data_tuple = (v_faj, v_egyedszam, v_kozseg, v_kozseg_id, v_eov_e, v_eov_n)
 
-        self.widget.label_8.setText(f'Sikeres feltöltés: {v_faj}')
+            cursor.execute(sqlite_insert_query, data_tuple)
+            sqliteConnection.commit()
+            
+            cursor.execute('UPDATE madarak2 SET Geom=MakePoint(eov_e, eov_n, 23700) WHERE id = (SELECT MAX(id) FROM madarak2);')
+            sqliteConnection.commit()
 
-        cursor.close()
+            self.widget.label_8.setText(f'Sikeres feltöltés: {v_faj}')
+
+            cursor.close()
+
+        except sqlite3.Error as error:
+            self.widget.label_8.setText(f'Sikertelen feltöltés: {error}')
+
+        finally:
+            if sqliteConnection:
+                sqliteConnection.close()
