@@ -3,8 +3,7 @@ A modul segítségével adatokat lehet feltölteni egy spatialite adatbázisba.
 QGIS Plugin Builderrel készült, azonban jócskán átalakítottam a jobb érthetőség végett.
 A modul csak manuálisan telepíthető.
 A Plugin Builderrel létrehozott modulból eltávolítottam minden olyan állományt, amely nem feltétlenül szükséges a futtatáshoz.
-Így végül egy teljesen csupasz, minimál modul jött létre, amely alapján szerintem jobban megérthető a QGIS modulok létrehozásának menete.
-A fentiek miatt a projekt felépítése nem követi a QGIS Python modulok kialakításának pontos szabályait.
+Így végül egy teljesen csupasz, minimál modul jött létre, amely alapján szerintem jobban megérthető a QGIS modulok szerkezete.
 
 A madarak könyvtár teljes tartalmát be kell másolni, Windows alatt az alábbi könyvtárba:
 c:\Users\UserName\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\
