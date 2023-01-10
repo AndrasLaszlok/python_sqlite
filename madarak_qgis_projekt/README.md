@@ -12,3 +12,4 @@ Ezt követően a QGIS-en belül a "modulok kezelése és telepítése" ablakban 
 A modul működése feltételezi egy megfelelő struktúrájú és nevű spatialite adatbázis meglétét.
 Jelen formájában inkább csak mintaként szolgál, az adatbázis nélkül nem használható.
 A modulról bővebben a (https://pythondb.wordpress.com/) oldalon lehet majd olvasni.
+QGIS 3.22.1-Białowieża alatt létrehozva, tesztelve.
